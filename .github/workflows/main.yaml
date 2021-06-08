@@ -1,0 +1,35 @@
+name: Run Hypervector tests
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Run tests
+        run: |
+          pytest
+        continue-on-error: true
+      - name: Get Hypervector results
+        uses: hypervectorio/hypervector-results-gh-action@1.0.0
+        id: hypervector
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          hypervector_api_key: 32I8kjJNTr6i6x0U7ir2Y_tkm1r2RoJnrW962kbOHbY4Jw8
+
