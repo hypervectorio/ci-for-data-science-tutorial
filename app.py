@@ -1,6 +1,7 @@
 import numpy as np
 from flask import Flask
 from joblib import load
+from sklearn.preprocessing import MinMaxScaler
 
 app = Flask(__name__)
 model = load('./pipeline.joblib')

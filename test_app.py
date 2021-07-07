@@ -3,12 +3,12 @@ import pytest
 
 from app import get_prediction
 
-hypervector.API_KEY = "YOUR_API_KEY"
+hypervector.API_KEY = "32I8kjJNTr6i6x0U7ir2Y_tkm1r2RoJnrW962kbOHbY4Jw8"
 
 
 @pytest.fixture
 def hypervector_fixture():
-    definition = hypervector.Definition.get("YOUR_DEFINITION_UUID")
+    definition = hypervector.Definition.get("1d315c12-78e8-44a3-8e9f-8c3a514a56b9")
     ensemble = definition.ensembles[0]
     hypervectors = ensemble.hypervectors()
     benchmark = ensemble.benchmarks[0]
