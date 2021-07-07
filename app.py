@@ -11,6 +11,11 @@ def get_prediction(data):
     if len(np.shape(data)) == 1:
         data = np.array(data).reshape(1, -1)
 
+    # adding breaking change
+    scaler = MinMaxScaler()
+    scaler.fit(data)
+    data = scaler.transform(data)
+
     results = list(model.predict(data))
     response = {"prediction": [int(result) for result in results]}
     return response
